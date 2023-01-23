@@ -23,7 +23,6 @@ const Menu = () => {
   useEffect(() => {
     const abortCont = new AbortController();
     setStatus(0);
-    setMeals(null);
     // fetch(`http://api.tuftsdining.com:5000/meals/${location}/${formatDate(date)}`)
     //   .then(res => {
     //     if (!res.ok) {
