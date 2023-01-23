@@ -25,8 +25,8 @@ const Navbar = () => {
             <ul className="float-right">
               {
                 links.map(link => (
-                  <li className="inline-block mx-3 text-slate-700 font-light">
-                    <Link key={link.key} to={link.to}>{ link.display }</Link>
+                  <li key={link.key} className="inline-block mx-3 text-slate-700 font-light">
+                    <Link to={link.to}>{ link.display }</Link>
                   </li>
                 ))
               }
@@ -54,8 +54,8 @@ const Navbar = () => {
             <ul className="clear-right w-full mt-5 border-t-2 py-3 border-blue-700 bg-slate-100">
               {
                 links.map(link => (
-                  <li className="px-5 ml-5 text-xl w-full border-t first:border-t-0 border-slate-500 font-light">
-                    <Link key={link.key} to={link.to} className="block py-3">{ link.display }</Link>
+                  <li key={link.key} className="px-5 ml-5 text-xl w-full border-t first:border-t-0 border-slate-500 font-light">
+                    <Link to={link.to} className="block py-3">{ link.display }</Link>
                   </li>
                 ))
               }

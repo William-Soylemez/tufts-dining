@@ -7,8 +7,13 @@ import DateSelector from "./DateSelector";
 import GLOBALS from "../Globals";
 
 const Menu = () => {
+  const interpretDate = (dateString) => {
+    let dateArr = dateString.split("-");
+    return new Date(dateArr[0], dateArr[1]-1, dateArr[2]);
+  }
+
   const { location: locationIn, date: dateIn } = useParams();
-  const [date, setDate] = useState(new Date(dateIn));
+  const [date, setDate] = useState(interpretDate(dateIn));
   const [location, setLocation] = useState(locationIn);
   const [meals, setMeals] = useState(null);
   // Status: 0 - loading, 1 - found, 2 - not found
@@ -19,17 +24,21 @@ const Menu = () => {
     return date.getFullYear()+ "-" + (date.getMonth()+1) + "-" + date.getDate();
   };
 
+  
+
   useEffect(() => {
     const abortCont = new AbortController();
     setStatus(0);
     fetch(`http://api.tuftsdining.com:5000/meals/${location}/${formatDate(date)}`)
       .then(res => {
         if (!res.ok) {
-            throw Error("Could not fetch the data for that resource");
-          }
+          throw Error("Could not fetch the data for that resource");
+        }
+        console.log(res);
         return res.json();
       })
       .then((data) => {
+        console.log(data);
         setMeals(data);
         if (data) {
           setStatus(1);
