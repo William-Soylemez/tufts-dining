@@ -14,6 +14,7 @@ const Menu = () => {
   // Status: 0 - loading, 1 - found, 2 - not found
   const [status, setStatus] = useState(0);
   const [selected, setSelected] = useState(null);
+  const [test, setTest] = useState(null);
 
   const formatDate = (date) => {
     return date.getFullYear()+ "-" + (date.getMonth()+1) + "-" + date.getDate();
@@ -22,35 +23,46 @@ const Menu = () => {
   useEffect(() => {
     const abortCont = new AbortController();
     setStatus(0);
-    fetch(`http://api.tuftsdining.com:5000/meals/${location}/${formatDate(date)}`)
+    // fetch(`http://api.tuftsdining.com:5000/meals/${location}/${formatDate(date)}`)
+    //   .then(res => {
+    //     if (!res.ok) {
+    //         throw Error("Could not fetch the data for that resource");
+    //       }
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     setMeals(data);
+    //     if (data) {
+    //       setStatus(1);
+    //       setSelected(data[0]);
+    //     } else {
+    //       setStatus(3);
+    //     }
+    //   })
+    //   .catch(err => {
+    //     if (err.name === "AbortError") {
+    //       console.log("Fetch aborted");
+    //     } else {
+    //       setStatus(2);
+    //     }
+    //   });
+    fetch("https://jsonplaceholder.typicode.com/posts/1")
       .then(res => {
-        if (!res.ok) {
-            throw Error("Could not fetch the data for that resource");
-          }
         return res.json();
       })
-      .then((data) => {
-        setMeals(data);
-        if (data) {
-          setStatus(1);
-          setSelected(data[0]);
-        } else {
-          setStatus(3);
-        }
+      .then(data => {
+        setTest(data);
+        console.log(data);
       })
-      .catch(err => {
-        if (err.name === "AbortError") {
-          console.log("Fetch aborted");
-        } else {
-          setStatus(2);
-        }
-      });
     return () => abortCont.abort();
   }, [location, date]);
 
 
   return (
     <div>
+      <p>Date (direct): { date.toDateString() }</p>
+      <p>Date (formatted from thinggg): { formatDate(date) }</p>
+      <p>Test thing: { test && test.title }</p>
       <div className="border-y-2 py-2 border-gray-200 bg-slate-50 my-10 text-center">
         <LocationSelector date={date} location={location} setLocation={setLocation} />
         <DateSelector date={date} location={location} setDate={setDate} />
