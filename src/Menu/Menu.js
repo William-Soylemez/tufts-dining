@@ -29,7 +29,7 @@ const Menu = () => {
   useEffect(() => {
     const abortCont = new AbortController();
     setStatus(0);
-    fetch(`http://api.tuftsdining.com:5000/meals/${location}/${formatDate(date)}`)
+    fetch(`https://api.tuftsdining.com/meals/${location}/${formatDate(date)}`)
       .then(res => {
         if (!res.ok) {
           throw Error("Could not fetch the data for that resource");
