@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import Home from "./Home";
 import Menu from "./Menu/Menu";
 import About from "./About";
+import Api from "./Api";
 
 function App() {
   return (
@@ -25,6 +26,12 @@ function App() {
           } />
           <Route path="/about" element={
             <Page name="About"> <About /> </Page>
+          } />
+          <Route path="/api" element={
+            <Page name="API"> <Api /> </Page>
+          } />
+          <Route path="*" element={
+            <Navigate to="/menu" />
           } />
         </Routes>
       </BrowserRouter>

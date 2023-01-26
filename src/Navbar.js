@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MediaQuery from "react-responsive";
 import MenuIcon from '@mui/icons-material/Menu';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -7,9 +7,11 @@ import AnimateHeight from "react-animate-height";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const links = [
     { key: 1, to: "/home", display: "Home" },
     { key: 2, to: "/menu", display: "Menu viewer" },
+    { key: 3, to: "/api", display: "API" },
     { key: 3, to: "/about", display: "About" }
   ];
 
@@ -55,7 +57,7 @@ const Navbar = () => {
               {
                 links.map(link => (
                   <li key={link.key} className="px-5 ml-5 text-xl w-full border-t first:border-t-0 border-slate-500 font-light">
-                    <Link to={link.to} className="block py-3">{ link.display }</Link>
+                    <button onClick={() => {navigate(link.to); setOpen(false)}} className="block py-3">{ link.display }</button>
                   </li>
                 ))
               }
