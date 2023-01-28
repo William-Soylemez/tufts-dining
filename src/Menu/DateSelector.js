@@ -30,21 +30,21 @@ const DateSelector = ({ location, date, setDate }) => {
       isMobile === undefined ? (
         <div className={`m-3 duration-300 ${open ? "border-2 bg-white" : ""} text-lg`}>
           <button onClick={() => setOpen(!open)} className={`bg-white ${open ? "" : "border-2"} my-2 py-2 px-5 duration-300`}>
-            { formatDate(date) }
+            { date.toDateString() }
             { open ? <ExpandLessIcon fontSize="medium" /> : <ExpandMoreIcon fontSize="medium" /> }
           </button>
           <AnimateHeight height={open ? "auto" : 0} duration={200} className="center-text">
-            <Calendar value={date} onChange={handleDate} className="mx-auto m-2" />
+            <Calendar value={date} onChange={handleDate} className="mx-auto m-2" calendarType="US"/>
           </AnimateHeight>
         </div> 
       ) : (
         <div className="inline-block m-5 text-lg">
           {/* <DatePicker value={date} onChange={handleDate} required={true} clearIcon={null} className="p-5 bg-red-300"/> */}
           <button onClick={() => setOpen(!open)} className={`bg-white border-2 my-2 py-2 px-5 ${open ? "text-blue-700" : ""}`}>
-            { formatDate(date) }
+            { date.toDateString() }
             <CalendarMonthIcon className="ml-5"/>
           </button>
-          <Calendar value={date} onChange={handleDate} className={open ? "absolute z-40" : "hidden"}/>
+          <Calendar value={date} onChange={handleDate} className={open ? "absolute z-40" : "hidden"} calendarType="US"/>
         </div>
         
       )
