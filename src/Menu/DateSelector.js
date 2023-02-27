@@ -1,6 +1,6 @@
 import AnimateHeight from "react-animate-height";
 import { useNavigate } from "react-router-dom";
-import useMediaQuery from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import { useState } from "react";
@@ -27,7 +27,7 @@ const DateSelector = ({ location, date, setDate }) => {
   };
 
   return (
-      isMobile === undefined ? (
+      isMobile ? (
         <div className={`m-3 duration-300 ${open ? "border-2 bg-white" : ""} text-lg`}>
           <button onClick={() => setOpen(!open)} className={`bg-white ${open ? "" : "border-2"} my-2 py-2 px-5 duration-300`}>
             { date.toDateString() }

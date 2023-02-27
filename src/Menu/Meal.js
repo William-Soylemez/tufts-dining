@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 
 const Meal = ({meal}) => {
   const [mealGrouped, setMealGrouped] = useState([]);
+  const isMobile = useMediaQuery({ maxWidth: 700});
 
   useEffect(() => {
+    console.log(isMobile);
     let newMealGrouped = [];
     let mealCat = {};
     meal.items.forEach(item => {
@@ -18,7 +21,7 @@ const Meal = ({meal}) => {
     newMealGrouped.push(mealCat);
     newMealGrouped.splice(0, 1);
     setMealGrouped(newMealGrouped);
-  }, [meal]);
+  }, [meal, isMobile]);
   
 
   
@@ -26,10 +29,10 @@ const Meal = ({meal}) => {
     <div className="m-auto w-5/6 columns-xs">
       {mealGrouped.map((mealCat) => (
         <div key={mealCat.key} 
-          className="
+          className={`
             rounded-2xl border border-gray-200 
-            hover:shadow-md hover:shadow-gray-400 duration-300 hover:bg-slate-50 hover:scale-105
-            px-4 pb-2 pt-4 break-inside-avoid-column m-5 group"
+            ${isMobile ? "" : "hover:shadow-md hover:shadow-gray-400 duration-300 hover:bg-slate-50 hover:scale-105"}
+            px-4 pb-2 pt-4 break-inside-avoid-column m-5 group`}
         >
           <p 
             className="

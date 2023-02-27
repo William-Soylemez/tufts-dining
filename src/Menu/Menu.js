@@ -77,7 +77,7 @@ const Menu = () => {
           { GLOBALS.LOCATIONS.filter(el => el.id === location)[0].name } is not serving anything on this date
         </div> }
         <p className="mx-5 my-10 text-gray-500">
-          All information is from Tufts dining website (<a href="https://menus.tufts.edu" target="_blank" rel="noreferrer" className="underline">https://menus.tufts.edu</a>)
+          All information is from the Tufts dining website (<a href="https://menus.tufts.edu" target="_blank" rel="noreferrer" className="underline">https://menus.tufts.edu</a>)
         </p>
       </div>
     </div>

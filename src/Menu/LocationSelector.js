@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import useMediaQuery from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 import GLOBALS from "../Globals";
 
 const LocationSelector = ({ date, location, setLocation }) => {
@@ -17,7 +17,7 @@ const LocationSelector = ({ date, location, setLocation }) => {
 
   return (
     <div className={`
-      ${isMobile === undefined ? "block text-center mt-5" : "inline-block w-64 m-5"} 
+      ${isMobile ? "block text-center mt-5" : "inline-block w-64 m-5"} 
       
       `
     }>
