@@ -29,7 +29,7 @@ const Menu = () => {
   useEffect(() => {
     const abortCont = new AbortController();
     setStatus(0);
-    fetch(`https://api.tuftsdining.com/meals/${location}/${formatDate(date)}`)
+    fetch(`https://tufts-dining-default-rtdb.firebaseio.com/meals/${formatDate(date)}/${location}.json`)
       .then(res => {
         if (!res.ok) {
           throw Error("Could not fetch the data for that resource");
